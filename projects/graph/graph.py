@@ -97,6 +97,8 @@ class Graph:
 
         print(result[:len(result) - 2])
 
+    visited_vertices = set()
+
     def dft_recursive(self, starting_vertex):
         """
         Print each vertex in depth-first order
@@ -104,7 +106,13 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+
+        if starting_vertex not in self.visited_vertices:
+            print(starting_vertex, end=", ")
+            self.visited_vertices.add(starting_vertex)
+
+            for vertex in self.get_neighbors(starting_vertex):
+                self.dft_recursive(vertex)
 
     def bfs(self, starting_vertex, destination_vertex):
         """
@@ -192,7 +200,19 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+        path = list()
+        path.append(starting_vertex)
+        if starting_vertex not in self.visited_vertices:
+            if starting_vertex == destination_vertex:
+                return path
+
+            self.visited_vertices.add(starting_vertex)
+
+            for vertex in self.get_neighbors(starting_vertex):
+                new_path = self.dfs_recursive(vertex, destination_vertex)
+                if new_path:
+                    path = path.__add__(new_path)
+                    return path
 
 
 if __name__ == '__main__':
@@ -247,7 +267,9 @@ if __name__ == '__main__':
         1, 2, 4, 6, 3, 5, 7
     '''
     graph.dft(1)
-    # graph.dft_recursive(1)
+    graph.dft_recursive(1)
+    graph.visited_vertices = set()
+    print()
 
     '''
     Valid BFS path:
@@ -261,4 +283,4 @@ if __name__ == '__main__':
         [1, 2, 4, 7, 6]
     '''
     print(graph.dfs(1, 6))
-    # print(graph.dfs_recursive(1, 6))
+    print(graph.dfs_recursive(1, 6))
