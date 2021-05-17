@@ -2,6 +2,7 @@
 Simple graph implementation
 """
 from util import Stack, Queue  # These may come in handy
+from itertools import chain
 
 
 class Graph:
@@ -38,18 +39,30 @@ class Graph:
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
+        result = ""
         # create an empty queue and enqueue the starting vertex
+        queue = Queue()
+        queue.enqueue(starting_vertex)
         # create an empty set to track visited vertices
+        visited_vertices = set()
 
         # while the queue is not empty:
+        while queue.size() > 0:
             # get current vertex and dequeue it
+            current_vertex = queue.dequeue()
 
-            # check if the current vertext has not been visited:
+            # check if the current vertex has not been visited:
+            if current_vertex not in visited_vertices:
                 # print the current vertex
-                # mark the current vertext as visited
-                    # add the current vertex to a visited set
+                result += str(current_vertex) + ", "
 
-                # queue up all the current vertex's neighbors
+                # mark the current vertex as visited
+                visited_vertices.add(current_vertex)
+
+                # enqueue all the current vertex's neighbors
+                for vertex in self.get_neighbors(current_vertex):
+                    queue.enqueue(vertex)
+        print(result)
 
     def dft(self, starting_vertex):
         """
@@ -85,24 +98,37 @@ class Graph:
         breath-first order.
         """
         # create an empty queue and enqueue the path to starting vertex
+        queue = Queue()
+        queue.enqueue([starting_vertex])
         # create an empty set to track visited vertices
+        visited_vertices = set()
 
         # while the queue is not empty:
+        while queue.size() > 0:
             # get current vertex path and dequeue it
+            current_path = queue.dequeue()
             # set the current vertex to the last element of the path
+            current_vertex = current_path[-1]
 
-            # check if the current vertext has not been visited:
+            # check if the current vertex has not been visited:
+            if current_vertex not in visited_vertices:
 
                 # check if the current vertex is destination
+                if current_vertex == destination_vertex:
                     # if it is stop and return it
+                    return current_path
 
-                # mark the current vertext as visited
-                    # add the current vertex to a visited set
+                # mark the current vertex as visited
+                visited_vertices.add(current_vertex)
 
                 # queue up new paths with each neighbor
+                for vertex in self.get_neighbors(current_vertex):
                     # take current path
+                    new_path = current_path.copy()
                     # append neighbor to it
+                    new_path.append(vertex)
                     # queue up new path
+                    queue.enqueue(new_path)
 
     def dfs(self, starting_vertex, destination_vertex):
         """
@@ -165,7 +191,7 @@ if __name__ == '__main__':
         1, 2, 4, 3, 7, 6, 5
         1, 2, 4, 3, 7, 5, 6
     '''
-    # graph.bft(1)
+    graph.bft(1)
 
     '''
     Valid DFT paths:
@@ -181,7 +207,7 @@ if __name__ == '__main__':
     Valid BFS path:
         [1, 2, 4, 6]
     '''
-    # print(graph.bfs(1, 6))
+    print(graph.bfs(1, 6))
 
     '''
     Valid DFS paths:
