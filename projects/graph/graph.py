@@ -30,21 +30,44 @@ class Graph:
         """
         Get all neighbors (edges) of a vertex.
         """
-        pass  # TODO
+        if vertex_id in self.vertices:
+            return self.vertices[vertex_id]
 
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # create an empty queue and enqueue the starting vertex
+        # create an empty set to track visited vertices
+
+        # while the queue is not empty:
+            # get current vertex and dequeue it
+
+            # check if the current vertext has not been visited:
+                # print the current vertex
+                # mark the current vertext as visited
+                    # add the current vertex to a visited set
+
+                # queue up all the current vertex's neighbors
 
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # create an empty stack and add the starting vertex
+        # create an empty set to track visited vertices
+
+        # while the queue is not empty:
+            # get current vertex and pop it
+
+            # check if the current vertext has not been visited:
+                # print the current vertex
+                # mark the current vertext as visited
+                # add the current vertex to a visited set
+
+            # push up all the current vertex's neighbors
 
     def dft_recursive(self, starting_vertex):
         """
@@ -61,7 +84,25 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        # create an empty queue and enqueue the path to starting vertex
+        # create an empty set to track visited vertices
+
+        # while the queue is not empty:
+            # get current vertex path and dequeue it
+            # set the current vertex to the last element of the path
+
+            # check if the current vertext has not been visited:
+
+                # check if the current vertex is destination
+                    # if it is stop and return it
+
+                # mark the current vertext as visited
+                    # add the current vertex to a visited set
+
+                # queue up new paths with each neighbor
+                    # take current path
+                    # append neighbor to it
+                    # queue up new path
 
     def dfs(self, starting_vertex, destination_vertex):
         """
@@ -124,7 +165,7 @@ if __name__ == '__main__':
         1, 2, 4, 3, 7, 6, 5
         1, 2, 4, 3, 7, 5, 6
     '''
-    graph.bft(1)
+    # graph.bft(1)
 
     '''
     Valid DFT paths:
@@ -133,19 +174,19 @@ if __name__ == '__main__':
         1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
     '''
-    graph.dft(1)
-    graph.dft_recursive(1)
+    # graph.dft(1)
+    # graph.dft_recursive(1)
 
     '''
     Valid BFS path:
         [1, 2, 4, 6]
     '''
-    print(graph.bfs(1, 6))
+    # print(graph.bfs(1, 6))
 
     '''
     Valid DFS paths:
         [1, 2, 4, 6]
         [1, 2, 4, 7, 6]
     '''
-    print(graph.dfs(1, 6))
-    print(graph.dfs_recursive(1, 6))
+    # print(graph.dfs(1, 6))
+    # print(graph.dfs_recursive(1, 6))
