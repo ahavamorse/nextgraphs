@@ -3,9 +3,10 @@ Simple graph implementation
 """
 from util import Stack, Queue  # These may come in handy
 
-class Graph:
 
+class Graph:
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
+
     def __init__(self):
         self.vertices = {}
 
@@ -13,13 +14,17 @@ class Graph:
         """
         Add a vertex to the graph.
         """
-        pass  # TODO
+        # Create new key with vertex ID without any edges
+        if vertex_id not in self.vertices:
+            self.vertices[vertex_id] = set()
 
     def add_edge(self, v1, v2):
         """
         Add a directed edge to the graph.
         """
-        pass  # TODO
+        # Find vertex v1 and v2 in out vertices and add v2 to the edges of v1
+        if v1 in self.vertices and v2 in self.vertices:
+            self.vertices[v1].add(v2)
 
     def get_neighbors(self, vertex_id):
         """
@@ -75,6 +80,7 @@ class Graph:
         This should be done using recursion.
         """
         pass  # TODO
+
 
 if __name__ == '__main__':
     graph = Graph()  # Instantiate your graph
