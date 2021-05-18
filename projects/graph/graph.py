@@ -4,6 +4,24 @@ Simple graph implementation
 from util import Stack, Queue  # These may come in handy
 from itertools import chain
 
+"""
+How to Solve Almost Any Graph Problem
+- Translate problem into graph
+- Build graph with code (could be as we go rather than ahead of time)
+- Traverse graph
+
+Do BFS
+    create a queue
+    create a visited set
+    add start word to queue (as a path?)
+    while queue is not empty
+        pop current word off queue
+        if word has not been visited
+            if current word is end word return path
+            add current word to visited set
+            add neighbors of current word to queue (as a path?)
+"""
+
 
 class Graph:
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
@@ -126,6 +144,8 @@ class Graph:
         # create an empty set to track visited vertices
         visited_vertices = set()
 
+        shortest_path = None
+
         # while the queue is not empty:
         while queue.size() > 0:
             # get current vertex path and dequeue it
@@ -138,7 +158,7 @@ class Graph:
 
                 # check if the current vertex is destination
                 if current_vertex == destination_vertex:
-                    # if it is stop and return it
+                    # It is the shortest path so return it
                     return current_path
 
                 # mark the current vertex as visited
@@ -152,6 +172,8 @@ class Graph:
                     new_path.append(vertex)
                     # queue up new path
                     queue.enqueue(new_path)
+
+        return shortest_path
 
     def dfs(self, starting_vertex, destination_vertex):
         """
