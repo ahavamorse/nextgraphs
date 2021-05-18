@@ -7,7 +7,7 @@ from itertools import chain
 """
 How to Solve Almost Any Graph Problem
 - Translate problem into graph
-- Build graph with code
+- Build graph with code (could be as we go rather than ahead of time)
 - Traverse graph
 
 Do BFS
