@@ -4,6 +4,24 @@ Simple graph implementation
 from util import Stack, Queue  # These may come in handy
 from itertools import chain
 
+"""
+How to Solve Almost Any Graph Problem
+- Translate problem into graph
+- Build graph with code
+- Traverse graph
+
+Do BFS
+    create a queue
+    create a visited set
+    add start word to queue (as a path?)
+    while queue is not empty
+        pop current word off queue
+        if word has not been visited
+            if current word is end word return path
+            add current word to visited set
+            add neighbors of current word to queue (as a path?)
+"""
+
 
 class Graph:
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
