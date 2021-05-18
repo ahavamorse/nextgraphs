@@ -126,6 +126,8 @@ class Graph:
         # create an empty set to track visited vertices
         visited_vertices = set()
 
+        shortest_path = None
+
         # while the queue is not empty:
         while queue.size() > 0:
             # get current vertex path and dequeue it
@@ -138,8 +140,12 @@ class Graph:
 
                 # check if the current vertex is destination
                 if current_vertex == destination_vertex:
-                    # if it is stop and return it
-                    return current_path
+                    # if it is see if it is the shortest path and save it
+                    if shortest_path is not None:
+                        if len(current_path) < len(shortest_path):
+                            shortest_path = current_path
+                    else:
+                        shortest_path = current_path
 
                 # mark the current vertex as visited
                 visited_vertices.add(current_vertex)
@@ -152,6 +158,8 @@ class Graph:
                     new_path.append(vertex)
                     # queue up new path
                     queue.enqueue(new_path)
+
+        return shortest_path
 
     def dfs(self, starting_vertex, destination_vertex):
         """
