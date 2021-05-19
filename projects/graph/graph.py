@@ -20,6 +20,16 @@ Do BFS
             if current word is end word return path
             add current word to visited set
             add neighbors of current word to queue (as a path?)
+
+DFT
+    create a stack
+    create a way to keep track of visited vertices
+    push starting vertex onto stack
+    while stack is not empty
+        pop off next vertex
+        if vertex has not been visited
+            add them to visited
+            push neighbors onto stack
 """
 
 
