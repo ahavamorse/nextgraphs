@@ -1,9 +1,6 @@
 import random
 from util import Queue
 
-GRAPH = sg.populate_graph(100, 5)
-
-
 class User:
     def __init__(self, name):
         self.name = name
@@ -99,9 +96,23 @@ class SocialGraph:
 
         return visited
 
+"""
+Part 3
+1. To create 100 users with an average of 10 friends each, add_friendship() would 
+    need to be called 50 times, because each friendship goes two ways, which means
+    both the users would have one friend after just one call of add_friendship(). 
+    Thus, it takes half the number of average friends times the total number of users.
+2. On average, with 1000 users with an average of 5 friends, each user will have
+    98.6 percent of the total users in their network. 
+    On average these same users have 3.5 degrees of separation from others in their
+    connection network. (1 degree of separation being a friend's friend)
+"""
+
 
 if __name__ == '__main__':
     sg = SocialGraph()
+    sg.populate_graph(1000, 5)
     print(sg.friendships)
     connections = sg.get_all_social_paths(1)
     print(connections)
+
