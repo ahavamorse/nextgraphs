@@ -1,6 +1,7 @@
 import random
 from util import Queue
 
+
 class User:
     def __init__(self, name):
         self.name = name
@@ -56,8 +57,8 @@ class SocialGraph:
         # avoid duplicate friendships
         possible_friendships = []
         for user_id in self.users:
-            for friend_id in range(user_id + 1, self.last_id + 1):
-               possible_friendships.append( (user_id, friend_id) )
+            for friend_id in range(user_id + 1, len(self.users.keys()) + 1):
+                possible_friendships.append((user_id, friend_id))
 
         # Randomly select x friendships
         # the formula for X is num_users * avg_friendships // 2
@@ -96,6 +97,7 @@ class SocialGraph:
 
         return visited
 
+
 """
 Part 3
 1. To create 100 users with an average of 10 friends each, add_friendship() would 
@@ -108,11 +110,9 @@ Part 3
     connection network. (1 degree of separation being a friend's friend)
 """
 
-
 if __name__ == '__main__':
     sg = SocialGraph()
-    sg.populate_graph(1000, 5)
+    sg.populate_graph(5, 2)
     print(sg.friendships)
     connections = sg.get_all_social_paths(1)
     print(connections)
-
